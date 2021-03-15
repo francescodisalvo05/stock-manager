@@ -32,3 +32,24 @@ def get_EMA(close,length=20):
     """
     return close.ewm(span=length, adjust=False).mean()
 
+def get_RSI(close,length=20):
+    """
+    :param close: closing prices
+    :param length: moving average length
+    """
+    # check if the difference is positive or negative
+    delta = close.diff(1).dropna()
+    
+    positive = delta.copy()
+    negative = delta.copy()
+    
+    positive[positive < 0] = 0
+    negative[negative > 0] = 0
+    
+    avg_gain = positive.rolling(window=length).mean()
+    avg_loss = abs(negative.rolling(window=length).mean())
+    
+    rsi = 100 - (100/(1 + avg_gain/avg_loss))
+    
+    return rsi
+

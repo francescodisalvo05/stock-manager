@@ -58,6 +58,7 @@ with container_1:
         st.markdown("Gain/Loss [%]")
         st.info(gain_loss)
 
+
 with container_2:
 
     indicators = desc.indicators
@@ -72,10 +73,12 @@ with container_2:
 
     with st.beta_expander("See explanation"):
         st.markdown(strategies[custom_indicator[0]])
-    
-    
 
-    df_signal, balance, sell_dates, profit_values = td.crossover_ma(history_close, trade_input, custom_indicator[1])
+    # values taken from the dictionary
+    if custom_indicator[0] == 2 or custom_indicator[0] == 3:
+        df_signal, balance, sell_dates, profit_values = td.crossover_ma(history_close, trade_input, custom_indicator[1])
+    elif custom_indicator[0] == 0:
+        df_signal, balance, sell_dates, profit_values = td.trade_RSI(history_close, trade_input)
 
     # plot the profit
     fig_profit = go.Figure()
@@ -84,11 +87,13 @@ with container_2:
 
     st.plotly_chart(fig_profit,use_container_width=True)
 
-    if balance > 0:
-        final_comment = "Congratulations, you would have earned \t $ " + str(round(balance,2))
+    net = balance - trade_input
+    if net > 0:
+        final_comment = "Congratulations, you would have earned \t $ " + str(round(net,2))
         st.info(final_comment)
-    elif balance < 0:
-        final_comment = "I am sorry, you would have lost   $ " + str(round(balance,2))
+    elif net < 0:
+        final_comment = "I am sorry, you would have lost   $ " + str(abs(round(net,2)))
+        st.info(final_comment)
     else :
         st.info("It could have been worse, your final balance would be the same")
 
