@@ -1,6 +1,6 @@
 indicators = {
         0 : "Relative Strength Index (RSI)",
-        1 : "Bollinger Bands",
+        1 : "Moving Average Convergence/Divergence (MACD)",
         2 : "Simple Moving Average (SMA)",
         3 : "Exponential Moving Average (EMA)"
 }
@@ -11,7 +11,12 @@ descriptions = {
             to evaluate overbought or oversold conditions in the price of a stock or \
             other asset.",
 
-    1 : "BBBBBBBBBBBBBBB",
+    1 : "The **moving average convergence divergence** (MACD) is a trend-following momentum \
+        indicator that shows the relationship between two moving averages of a security’s price. \
+        The MACD is calculated by subtracting the 26-period exponential moving average (EMA) from \
+        the 12-period EMA. The result of that calculation is the MACD line. A nine-day EMA of \
+        the MACD called the signal line, is then plotted on top of the MACD line, which can \
+        function as a trigger for buy and sell signals.",
 
     2 : "The **simple moving average** (SMA) is an arithmetic moving average calculated \
         by adding recent prices and then dividing that figure by the number of time periods in the calculation average.",
@@ -26,7 +31,8 @@ strategies = {
 
     0 : "",
 
-    1 : "",
+    1 : "The following trading **strategy** simply buy the when the MACD crosses above its signal line \
+        and sell when the MACD crosses below the signal line. ",
 
     2 : "The following trading **strategy** uses two moving averages to a chart: one **longer** and one **shorter**. When the shorter-term MA crosses above the longer-term MA, \
         it's a buy signal, as it indicates that the trend is shifting up. This is known as a **'golden cross'**\

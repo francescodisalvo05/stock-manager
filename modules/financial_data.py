@@ -53,3 +53,13 @@ def get_RSI(close,length=20):
     
     return rsi
 
+def get_MACD(close):
+    """
+    :param close: closing prices
+    :return MACD: MACD values
+    :return signal: signal, calculated as a 9 day EMA on the MACD
+    """
+    macd =  get_EMA(close,12) - get_EMA(close,26)
+    signal = get_EMA(macd,9)
+    return signal, macd
+

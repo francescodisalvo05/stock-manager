@@ -79,6 +79,8 @@ with container_2:
         df_signal, balance, sell_dates, profit_values = td.crossover_ma(history_close, trade_input, custom_indicator[1])
     elif custom_indicator[0] == 0:
         df_signal, balance, sell_dates, profit_values = td.trade_RSI(history_close, trade_input)
+    elif custom_indicator[0] == 1:
+        df_signal, balance, sell_dates, profit_values = td.trade_MACD(history_close, trade_input)
 
     # plot the profit
     fig_profit = go.Figure()
